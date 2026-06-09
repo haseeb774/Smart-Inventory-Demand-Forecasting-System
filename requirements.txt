@@ -1,0 +1,67 @@
+# Core
+numpy
+pandas
+
+
+# Visualization & EDA
+matplotlib
+seaborn
+plotly
+
+# SQL & Databases
+mysql-connector-python
+sqlalchemy
+pymysql
+
+# Feature Engineering & Preprocessing
+scikit-learn
+category-encoders
+feature-engine
+
+# Time Series / Forecasting (optional but recommended)
+statsmodels
+prophet
+pmdarima
+
+# Machine Learning
+xgboost
+lightgbm
+# catboost
+
+# Experiment Tracking
+mlflow
+
+
+
+# Data Validation & Monitoring
+# evidently
+
+# API
+fastapi
+uvicorn
+
+# Web App / Dashboard
+streamlit
+
+# Serialization
+joblib
+
+# Config & Utilities
+python-dotenv
+pyyaml
+
+# Docker / Deployment helpers
+gunicorn
+
+# Jupyter (for EDA)
+jupyter
+notebook
+ipykernel
+
+# Testing
+pytest
+
+
+
+# HTTP requests (if needed)
+requests

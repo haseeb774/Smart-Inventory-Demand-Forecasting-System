@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 26e0e0f5dffcac016939efd1f0a24e43b6d38548
+
 import sys
+
 from src.logger import logging
 
 def error_message_detail(error,error_detail:sys):

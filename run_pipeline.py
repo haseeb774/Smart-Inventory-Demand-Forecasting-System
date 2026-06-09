@@ -1,33 +1,47 @@
+import os
+
 from src.shopify_connector import ShopifyConnector
-from src.exception import CustomException
-from src.logger import logging
-import sys
+from src.synthetic_data_generator import generate_orders
 
 
-def run_shopify_connector():
-    try:
-        logging.info("Starting Shopify Connector...")
+def run_pipeline():
 
-        connector = ShopifyConnector()
+    os.makedirs(
+        "data/raw",
+        exist_ok=True
+    )
 
-        orders_df = connector.get_orders(days_back=1095)
-        products_df = connector.get_products()
+    connector = ShopifyConnector()
 
-        connector.save_to_csv(orders_df, "orders_raw")
-        connector.save_to_csv(products_df, "products_raw")
+    products_df = connector.get_products()
 
-        logging.info(
-            f"Fetched {len(orders_df)} order rows and "
-            f"{len(products_df)} product rows."
-        )
+    products_df.to_csv(
+        "data/raw/products_raw.csv",
+        index=False
+    )
 
-        print("Orders:", orders_df.shape)
-        print("Products:", products_df.shape)
+    print(
+        f"Products saved: "
+        f"{products_df.shape}"
+    )
 
-    except Exception as e:
-        logging.error(f"Error in Shopify Connector: {e}")
-        raise CustomException(e, sys)
+    orders_df = generate_orders(
+        products_df
+    )
+
+    orders_df.to_csv(
+        "data/raw/orders_raw.csv",
+        index=False
+    )
+
+    print(
+        f"Orders generated: "
+        f"{orders_df.shape}"
+    )
+
+    print("\nPipeline completed successfully")
 
 
 if __name__ == "__main__":
-    run_shopify_connector()
+
+    run_pipeline()
